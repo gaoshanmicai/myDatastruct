@@ -18,7 +18,7 @@
 *                                                                            *
 *****************************************************************************/
 
-#define            TBLSIZ               11
+#define            TBLSIZ               13
 
 /*****************************************************************************
 *                                                                            *
@@ -262,9 +262,15 @@ if ((retval = ohtbl_insert(&htbl, data)) != 0)
 
 fprintf(stdout, "Hashing %c:", *data);
 
-for (j = 0; j < TBLSIZ; j++)
-   fprintf(stdout, " %02d", (h1_char(data) + (j * h2_char(data))) % TBLSIZ);
+for(int k=0;k<TBLSIZ;k++)
+   fprintf(stdout," %02d",k);
+printf("\n    \t");
 
+for (j = 0; j < TBLSIZ; j++)
+{
+   
+   fprintf(stdout, " %02d", (h1_char(data) + (j * h2_char(data))) % TBLSIZ);
+}
 fprintf(stdout, "\n");
 
 fprintf(stdout, "Trying to insert R again...Value=%d (0=OK)\n", retval);
@@ -324,9 +330,17 @@ if ((data = (char *)malloc(sizeof(char))) == NULL)
 
 if ((retval = ohtbl_insert(&htbl, data)) != 0)
    free(data);
+print_table(&htbl);
 
-fprintf(stdout, "Trying to insert into a full table...Value=%d (-1=OK)\n",
-   retval);
+char a='Q';
+ if((retval = ohtbl_insert(&htbl, &a)) != 0)
+  { 
+     printf("error insert\n");
+     return 1;
+  }
+print_table(&htbl);
+// fprintf(stdout, "Trying to insert into a full table...Value=%d (-1=OK)\n",
+//    retval);
 
 c = 'o';
 data = &c;
