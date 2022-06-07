@@ -1,0 +1,27 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	/root/mytest/examples_pc/examples/bit/Makefile	/^CC					= gcc$/;"	m
+CC	/root/mytest/examples_pc/examples/bit/bit.mak	/^CC     = c89$/;"	m
+CFLAGS	/root/mytest/examples_pc/examples/bit/bit.mak	/^CFLAGS =$/;"	m
+C_DEP	/root/mytest/examples_pc/examples/bit/Makefile	/^C_DEP			= $(patsubst %.$(EXT), $(OBJ_DIR)\/%.d,$(C_SRC_NODIR))$/;"	m
+C_OBJ	/root/mytest/examples_pc/examples/bit/Makefile	/^C_OBJ 			= $(patsubst %.$(EXT), $(OBJ_DIR)\/%.o,$(C_SRC_NODIR))$/;"	m
+C_SRC_NODIR	/root/mytest/examples_pc/examples/bit/Makefile	/^C_SRC_NODIR			= $(notdir $(C_SRC))$/;"	m
+EXE	/root/mytest/examples_pc/examples/bit/bit.mak	/^EXE    = ex-1.exe$/;"	m
+EXT	/root/mytest/examples_pc/examples/bit/Makefile	/^EXT					= c$/;"	m
+HARD_DIR	/root/mytest/examples_pc/examples/bit/Makefile	/^HARD_DIR			= ..\/..\/include\/$/;"	m
+INCDRS	/root/mytest/examples_pc/examples/bit/bit.mak	/^INCDRS = -I$(ALGOWC_TOPDIR)\/include$/;"	m
+LFLAGS	/root/mytest/examples_pc/examples/bit/bit.mak	/^LFLAGS =$/;"	m
+LIBDRS	/root/mytest/examples_pc/examples/bit/bit.mak	/^LIBDRS =$/;"	m
+LIBFLS	/root/mytest/examples_pc/examples/bit/bit.mak	/^LIBFLS =$/;"	m
+LL	/root/mytest/examples_pc/examples/bit/bit.mak	/^LL     = c89$/;"	m
+MAKNAM	/root/mytest/examples_pc/examples/bit/bit.mak	/^MAKNAM = bit.mak$/;"	m
+OBJFLS	/root/mytest/examples_pc/examples/bit/bit.mak	/^OBJFLS = ex-1.o\\$/;"	m
+OBJ_DIR	/root/mytest/examples_pc/examples/bit/Makefile	/^OBJ_DIR				= $(TOP)\/obj$/;"	m
+SRCFLS	/root/mytest/examples_pc/examples/bit/bit.mak	/^SRCFLS = ex-1.c\\$/;"	m
+TARGET	/root/mytest/examples_pc/examples/bit/Makefile	/^TARGET				= ex1$/;"	m
+TOP	/root/mytest/examples_pc/examples/bit/Makefile	/^TOP=.$/;"	m
+main	/root/mytest/examples_pc/examples/bit/ex-1.c	/^int main(int argc, char **argv) {$/;"	f

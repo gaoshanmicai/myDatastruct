@@ -1,0 +1,76 @@
+#include "stdio.h"
+#include "stdlib.h"
+
+
+
+boolean QueueInsert(Queue_Mem_Struct* q, uint8_t* data,uint8_t size)
+{
+    int bufsize = sizeof(q->MemDataBuf);
+    int loaded = q->MemRearRecvIndex - q->MemFrontSendIndex;
+    if ( loaded < 0 )
+        loaded += bufsize;
+    
+    int free = bufsize - loaded - 1;
+    
+    if ( free < size )
+        return FULL_ERROR;
+    
+    int mlen = size;
+    
+    if ( mlen > (bufsize - q->MemRearRecvIndex) ) {
+        mlen = bufsize - q->MemRearRecvIndex;
+        memcpy ( q->MemDataBuf + q->MemRearRecvIndex, data, mlen );
+        q->MemRearRecvIndex = 0;
+        data += mlen;
+        mlen = size - mlen;
+    }
+    memcpy ( q->MemDataBuf + q->MemRearRecvIndex, data, mlen );
+    q->MemRearRecvIndex += mlen;
+    if ( q->MemRearRecvIndex >= bufsize )
+        q->MemRearRecvIndex -= bufsize;
+    
+    return RW_OK;
+}
+
+boolean QueueDel(Queue_Mem_Struct* q, uint8_t* data)
+{
+    int bufsize = sizeof(q->MemDataBuf);
+    int loaded = q->MemRearRecvIndex - q->MemFrontSendIndex;
+    if ( loaded < 0 )
+        loaded += bufsize;
+    if ( loaded == 0 )
+        return EMPTY_ERROR;
+
+    *data = q->MemDataBuf[q->MemFrontSendIndex++]  ;
+    if ( q->MemFrontSendIndex == bufsize )
+        q->MemFrontSendIndex = 0;
+    
+    return RW_OK;
+}
+
+boolean QueueMemDataInsert(uint8_t* data,uint8_t size)
+{
+    return QueueInsert(&Queue_Recv, data, size);
+}
+
+boolean QueueMemDataDel(uint8_t *data)
+{
+    return QueueDel(&Queue_Recv, data);
+}
+
+boolean QueueMemDataInsertForiOS(uint8_t* data,uint8_t size)
+{
+    return QueueInsert(&Queue_iOSRecv, data, size);
+}
+
+
+boolean QueueMemDataDelForiOS(uint8_t *data)
+{
+    return QueueDel(&Queue_iOSRecv, data);
+}
+
+void InitQueue() 
+{
+    Queue_iOSRecv.MemRearRecvIndex = Queue_iOSRecv.MemFrontSendIndex = 0;
+    Queue_Recv.MemRearRecvIndex = Queue_Recv.MemFrontSendIndex = 0;
+}

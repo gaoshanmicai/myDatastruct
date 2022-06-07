@@ -1,0 +1,28 @@
+#/bin/sh
+CC  	= gcc
+CFLAGS    = -Wall -O -g
+CXXFLAGS  = 
+INCLUDE   = -I../include/
+TARGET    = libmylib.a
+LIBPATH   = ./lib/
+EXT 	  =c
+TOP       =.
+
+VPATH				+= $(TOP)
+
+#OBJS      = list.o dlist.o
+SRCS      += $(shell find $(TOP) -name '*.$(EXT)')
+C_SRC_NODIR	+= $(notdir $(SRCS))
+OBJS	  += $(patsubst %.$(EXT), %.o,$(C_SRC_NODIR))
+
+${OBJS}:${SRCS}
+	${CC} ${CFLAGS} $(INCLUDE) -c $^
+ 
+all:${OBJS}
+	@mkdir -p ./lib
+	ar rcs ${TARGET} $^       
+	mv ${TARGET} ${LIBPATH}
+
+clean:
+	rm -f *.o
+	rm -f ${LIBPATH}*
